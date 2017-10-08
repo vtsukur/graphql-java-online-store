@@ -1,0 +1,29 @@
+schema {
+  query: EntryPoint
+}
+
+type EntryPoint {
+  hello: String @deprecated(reason: "just playing around!")
+  cart(id: ID!): Cart
+}
+
+type Cart {
+  id: ID!
+  items: [Item!]!
+  subTotal: Float!
+}
+
+type Item {
+  quantity: Int!
+  product: Product!
+  total: BigDecimal!
+}
+
+type Product {
+  id: ID!
+  title: String!
+  price: BigDecimal!
+  description: String
+  sku: String!
+  images(limit: Int = 0): [String!]!
+}
