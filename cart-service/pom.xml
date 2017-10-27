@@ -92,6 +92,12 @@
             <artifactId>graphiql-spring-boot-starter</artifactId>
             <version>3.9.2</version>
         </dependency>
+
+        <dependency>
+            <groupId>io.leangen.graphql</groupId>
+            <artifactId>spqr</artifactId>
+            <version>0.9.3</version>
+        </dependency>
     </dependencies>
 
 </project>
