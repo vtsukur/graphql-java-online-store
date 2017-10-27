@@ -1,5 +1,6 @@
 package org.vtsukur.graphql.demo.cart.web.graphql;
 
+import com.coxautodev.graphql.tools.GraphQLMutationResolver;
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import com.coxautodev.graphql.tools.GraphQLResolver;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,15 @@ public class GraphQLJavaConfig {
             public List<String> images(Product product, int limit) {
                 return product.getImages().subList(
                         0, limit > 0 ? limit : product.getImages().size());
+            }
+        };
+    }
+
+    @Bean
+    public GraphQLMutationResolver mutations() {
+        return new GraphQLMutationResolver() {
+            public Cart addProductToCart(Long cartId, String productId, int quantity) {
+                return cartService.addProductToCart(cartId, productId, quantity);
             }
         };
     }

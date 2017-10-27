@@ -1,5 +1,6 @@
 schema {
   query: EntryPoint
+  mutation: Mutations
 }
 
 type EntryPoint {
@@ -26,4 +27,8 @@ type Product {
   description: String
   sku: String!
   images(limit: Int = 0): [String!]!
+}
+
+type Mutations {
+  addProductToCart(cartId: ID!, productId: ID!, quantity: Int = 0): Cart
 }
