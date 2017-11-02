@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.vtsukur.graphql.demo</groupId>
-    <artifactId>graphql-java-demo</artifactId>
+    <artifactId>graphql-java-online-store</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>graphql-java-demo</name>
+    <name>graphql-java-online-store</name>
     <description>Demo of Spring-based GraphQL server in Java</description>
 
     <parent>

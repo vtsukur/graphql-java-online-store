@@ -9,7 +9,7 @@
 
     <parent>
         <groupId>org.vtsukur.graphql.demo</groupId>
-        <artifactId>graphql-java-demo</artifactId>
+        <artifactId>graphql-java-online-store</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
