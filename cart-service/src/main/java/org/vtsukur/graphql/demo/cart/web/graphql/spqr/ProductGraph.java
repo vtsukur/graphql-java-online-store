@@ -16,7 +16,7 @@ import org.vtsukur.graphql.demo.product.api.Products;
 import java.util.List;
 import java.util.Set;
 
-import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.joining;
 
 @Component
 @Slf4j
@@ -33,13 +33,10 @@ public class ProductGraph {
     @Batched
     public List<Product> products(@GraphQLContext List<CartItem> cartItems,
                                   @GraphQLEnvironment Set<String> subFields) {
-        List<String> productIds = cartItems.stream().map(CartItem::getProductId).collect(toList());
-        log.info("fetching product(s) with id(s)={} and fields={}", productIds, subFields);
-
         return http.getForObject(
                 "http://localhost:9090/products?ids={id}",
                 Products.class,
-                String.join(",", productIds),
+                cartItems.stream().map(CartItem::getProductId).collect(joining(",")),
                 String.join(",", subFields)
         ).getProducts();
     }
