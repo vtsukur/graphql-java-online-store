@@ -32,11 +32,11 @@ public class GraphQLController {
     public GraphQLController(CartGraph cartGraph, ProductGraph productQuery) {
         GraphQLSchema schema = new GraphQLSchemaGenerator()
                 .withResolverBuilders(
-                        new BeanResolverBuilder("org.volodymyrtsukur.playground.graphql.demo.domain.core"),
+                        new BeanResolverBuilder("org.vtsukur.graphql.demo.cart.domain"),
                         //Resolve by annotations
                         new AnnotatedResolverBuilder(),
                         //Resolve public methods inside root package
-                        new PublicResolverBuilder("org.volodymyrtsukur.playground.graphql.demo.domain.integration.graphql_spqr"))
+                        new PublicResolverBuilder("org.vtsukur.graphql.demo.cart.web.graphql.spqr"))
                 .withOperationsFromSingleton(cartGraph)
                 .withOperationsFromSingleton(productQuery)
                 .withValueMapperFactory(new JacksonValueMapperFactory())
