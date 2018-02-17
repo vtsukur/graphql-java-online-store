@@ -1,16 +1,12 @@
 package org.vtsukur.graphql.demo.cart.conf;
 
-import cz.jirutka.spring.embedmongo.EmbeddedMongoFactoryBean;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.mongodb.core.MongoTemplate;
 import org.vtsukur.graphql.demo.cart.deps.ProductServiceRestClient;
 import org.vtsukur.graphql.demo.cart.domain.Cart;
 import org.vtsukur.graphql.demo.cart.domain.CartRepository;
 import org.vtsukur.graphql.demo.product.api.Product;
-
-import java.io.IOException;
 
 @Configuration
 public class RepositoriesConfiguration {
@@ -32,13 +28,6 @@ public class RepositoriesConfiguration {
         cart.addProduct(product2.getId(), product2.getPrice(), 2);
         cart.addProduct(product3.getId(), product3.getPrice(), 1);
         cartRepository.save(cart);
-    }
-
-    @Bean
-    public MongoTemplate mongoTemplate() throws IOException {
-        EmbeddedMongoFactoryBean mongoBean = new EmbeddedMongoFactoryBean();
-        mongoBean.setBindIp("localhost");
-        return new MongoTemplate(mongoBean.getObject(), "products_db");
     }
 
 }
