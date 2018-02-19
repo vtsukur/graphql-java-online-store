@@ -33,9 +33,9 @@ public class GraphQLController {
         GraphQLSchema schema = new GraphQLSchemaGenerator()
                 .withResolverBuilders(
                         new BeanResolverBuilder("org.vtsukur.graphql.demo.cart.domain"),
-                        //Resolve by annotations
+                        // Resolve by annotations.
                         new AnnotatedResolverBuilder(),
-                        //Resolve public methods inside root package
+                        // Resolve public methods inside root package.
                         new PublicResolverBuilder("org.vtsukur.graphql.demo.cart.web.graphql.spqr"))
                 .withOperationsFromSingleton(cartGraph)
                 .withOperationsFromSingleton(productQuery)
