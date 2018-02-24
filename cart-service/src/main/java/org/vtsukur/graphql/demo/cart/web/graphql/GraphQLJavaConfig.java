@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 import org.vtsukur.graphql.demo.cart.domain.Cart;
-import org.vtsukur.graphql.demo.cart.domain.CartItem;
+import org.vtsukur.graphql.demo.cart.domain.Item;
 import org.vtsukur.graphql.demo.cart.domain.CartService;
 import org.vtsukur.graphql.demo.product.api.Product;
 
@@ -36,12 +36,12 @@ public class GraphQLJavaConfig {
     }
 
     @Bean
-    public GraphQLResolver<CartItem> cartItemResolver() {
-        return new GraphQLResolver<CartItem>() {
-            public Product product(CartItem cartItem) {
+    public GraphQLResolver<Item> cartItemResolver() {
+        return new GraphQLResolver<Item>() {
+            public Product product(Item item) {
                 return http.getForObject("http://localhost:9090/products/{id}",
                         Product.class,
-                        cartItem.getProductId());
+                        item.getProductId());
             }
         };
     }

@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CartItem {
+public class Item {
 
     @Column(nullable = false)
     private String productId;
@@ -23,7 +23,7 @@ public class CartItem {
     @Column(nullable = false)
     private BigDecimal total;
 
-    CartItem(String productId, BigDecimal productPrice, int quantity) {
+    Item(String productId, BigDecimal productPrice, int quantity) {
         this.productId = productId;
         this.quantity = quantity;
         this.total = BigDecimal.valueOf(quantity).multiply(productPrice);

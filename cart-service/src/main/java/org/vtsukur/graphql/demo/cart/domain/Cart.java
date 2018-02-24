@@ -16,25 +16,25 @@ public class Cart {
     private Long id;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    private List<CartItem> items = new ArrayList<>();
+    private List<Item> items = new ArrayList<>();
 
     public BigDecimal getSubTotal() {
         return getItems().stream()
-                .map(CartItem::getTotal)
+                .map(Item::getTotal)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public void addProduct(String id, BigDecimal price, int quantity) {
-        CartItem cartItem = getItems().stream()
+        Item item = getItems().stream()
                 .filter(p -> p.getProductId().equals(id))
                 .findFirst()
                 .orElseGet(() -> {
-                    CartItem newItem = new CartItem(id, 0, BigDecimal.ZERO);
+                    Item newItem = new Item(id, 0, BigDecimal.ZERO);
                     getItems().add(newItem);
                     return newItem;
                 });
-        cartItem.setQuantity(cartItem.getQuantity() + quantity);
-        cartItem.setTotal(price.multiply(BigDecimal.valueOf(cartItem.getQuantity())));
+        item.setQuantity(item.getQuantity() + quantity);
+        item.setTotal(price.multiply(BigDecimal.valueOf(item.getQuantity())));
     }
 
 }

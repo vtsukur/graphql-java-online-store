@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-import org.vtsukur.graphql.demo.cart.domain.CartItem;
+import org.vtsukur.graphql.demo.cart.domain.Item;
 import org.vtsukur.graphql.demo.product.api.Product;
 import org.vtsukur.graphql.demo.product.api.Products;
 
@@ -31,12 +31,12 @@ public class ProductGraph {
 
     @GraphQLQuery(name = "product")
     @Batched
-    public List<Product> products(@GraphQLContext List<CartItem> cartItems,
+    public List<Product> products(@GraphQLContext List<Item> items,
                                   @GraphQLEnvironment Set<String> subFields) {
         return http.getForObject(
                 "http://localhost:9090/products?ids={id}",
                 Products.class,
-                cartItems.stream().map(CartItem::getProductId).collect(joining(",")),
+                items.stream().map(Item::getProductId).collect(joining(",")),
                 String.join(",", subFields)
         ).getProducts();
     }

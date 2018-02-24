@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.vtsukur.graphql.demo.cart.deps.ProductServiceRestClient;
 import org.vtsukur.graphql.demo.cart.domain.Cart;
-import org.vtsukur.graphql.demo.cart.domain.CartItem;
+import org.vtsukur.graphql.demo.cart.domain.Item;
 import org.vtsukur.graphql.demo.cart.domain.CartService;
 import org.vtsukur.graphql.demo.product.api.Product;
 
@@ -44,7 +44,7 @@ public class CartController {
         return cart;
     }
 
-    private List<CartWithProductsProjection.Item> toItemsWithProducts(List<CartItem> source) {
+    private List<CartWithProductsProjection.Item> toItemsWithProducts(List<Item> source) {
         return source.stream().map(sourceItem -> {
             val item = new CartWithProductsProjection.Item();
             item.setProduct(toProductProjection(productServiceRestClient.fetchProduct(sourceItem.getProductId())));
