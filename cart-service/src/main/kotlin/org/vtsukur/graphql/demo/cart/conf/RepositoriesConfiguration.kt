@@ -6,14 +6,13 @@ import org.springframework.context.annotation.Configuration
 import org.vtsukur.graphql.demo.cart.deps.ProductServiceRestClient
 import org.vtsukur.graphql.demo.cart.domain.Cart
 import org.vtsukur.graphql.demo.cart.domain.CartRepository
-import org.vtsukur.graphql.demo.product.api.Product
 
 @Configuration
-open class RepositoriesConfiguration {
+class RepositoriesConfiguration {
 
     @Bean
-    open fun commandLineRunner(cartRepository: CartRepository,
-                               productServiceRestClient: ProductServiceRestClient) =
+    fun commandLineRunner(cartRepository: CartRepository,
+                          productServiceRestClient: ProductServiceRestClient) =
             CommandLineRunner { insertInitialData(cartRepository, productServiceRestClient) }
 
     private fun insertInitialData(cartRepository: CartRepository,

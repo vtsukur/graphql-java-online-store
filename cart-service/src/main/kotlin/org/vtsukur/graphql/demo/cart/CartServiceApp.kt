@@ -8,4 +8,4 @@ fun main(args: Array<String>) {
 }
 
 @SpringBootApplication
-open class CartServiceApp
+class CartServiceApp

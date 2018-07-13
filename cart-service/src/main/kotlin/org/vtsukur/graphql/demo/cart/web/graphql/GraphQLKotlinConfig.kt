@@ -11,10 +11,10 @@ import org.vtsukur.graphql.demo.cart.domain.Item
 import org.vtsukur.graphql.demo.product.api.Product
 
 @Configuration
-open class GraphQLKotlinConfig(private val cartService: CartService, private val http: RestTemplate) {
+class GraphQLKotlinConfig(private val cartService: CartService, private val http: RestTemplate) {
 
     @Bean
-    open fun query() =
+    fun query() =
             object : GraphQLQueryResolver {
                 fun hello() = "Hello, Unicorns!"
 
@@ -22,7 +22,7 @@ open class GraphQLKotlinConfig(private val cartService: CartService, private val
             }
 
     @Bean
-    open fun cartItemResolver() =
+    fun cartItemResolver() =
             object : GraphQLResolver<Item> {
                 fun product(item: Item) =
                         http.getForObject("http://localhost:9090/products/{id}",
@@ -31,7 +31,7 @@ open class GraphQLKotlinConfig(private val cartService: CartService, private val
             }
 
     @Bean
-    open fun productResolver() =
+    fun productResolver() =
             object : GraphQLResolver<Product> {
                 fun images(product: Product, limit: Int) =
                         product.images.subList(
@@ -39,7 +39,7 @@ open class GraphQLKotlinConfig(private val cartService: CartService, private val
             }
 
     @Bean
-    open fun mutations() =
+    fun mutations() =
             object : GraphQLMutationResolver {
                 fun addProductToCart(cartId: Long?, productId: String, quantity: Int) =
                         cartService.addProductToCart(cartId, productId, quantity)
