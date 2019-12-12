@@ -1,27 +1,37 @@
 package org.vtsukur.graphql.demo.cart.deps;
 
 import org.springframework.web.client.RestTemplate;
+import org.vtsukur.graphql.demo.cart.domain.Item;
 import org.vtsukur.graphql.demo.product.api.Product;
+import org.vtsukur.graphql.demo.product.api.Products;
 
-import java.net.URI;
+import static java.util.stream.Collectors.joining;
+
+import java.util.List;
+import java.util.Set;
 
 public class ProductServiceRestClient {
 
     private final RestTemplate http;
 
-    private final String baseUrl;
+    private final String productsUrl;
 
     public ProductServiceRestClient(RestTemplate http, String baseUrl) {
         this.http = http;
-        this.baseUrl = baseUrl;
+        productsUrl = baseUrl + "/products";
     }
 
     public Product fetchProduct(String productId) {
-        return http.getForObject(productUrl(productId), Product.class);
+        return http.getForObject(productsUrl + '/' + productId, Product.class);
     }
 
-    public URI productUrl(String productId) {
-        return URI.create(String.format("%s/products/%s", baseUrl, productId));
+    public List<Product> fetchProducts(List<Item> items, Set<String> subFields) {
+        return http
+            .getForObject(productsUrl + "?ids={id}&include={fields}",
+                Products.class,
+                items.stream().map(Item::getProductId).collect(joining(",")),
+                String.join(",", subFields))
+            .getProducts();
     }
 
 }

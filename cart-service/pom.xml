@@ -5,13 +5,13 @@
 
     <groupId>org.vtsukur.graphql.demo</groupId>
     <artifactId>cart-service</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.13.RELEASE</version>
+        <version>2.2.0.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -19,7 +19,7 @@
         <dependency>
             <groupId>org.vtsukur.graphql.demo</groupId>
             <artifactId>product-service-api</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
 
         <dependency>
@@ -33,7 +33,6 @@
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>4.5.5</version>
         </dependency>
 
         <dependency>
@@ -54,37 +53,36 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.graphql-java</groupId>
-            <artifactId>graphql-spring-boot-starter</artifactId>
-            <version>3.10.0</version>
-        </dependency>
-        <dependency>
             <groupId>com.graphql-java</groupId>
             <artifactId>graphql-java</artifactId>
-            <version>7.0</version>
+            <version>13.0</version>
+        </dependency>
+        <!--dependency>
+            <groupId>com.graphql-java-kickstart</groupId>
+            <artifactId>graphql-spring-boot-starter</artifactId>
+            <version>6.0.0</version>
         </dependency>
         <dependency>
-            <groupId>com.graphql-java</groupId>
+            <groupId>com.graphql-java-kickstart</groupId>
             <artifactId>graphql-java-tools</artifactId>
-            <version>4.3.0</version>
-        </dependency>
-
+            <version>5.7.1</version>
+        </dependency-->
         <dependency>
             <groupId>com.graphql-java</groupId>
-            <artifactId>graphiql-spring-boot-starter</artifactId>
-            <version>3.10.0</version>
+            <artifactId>graphql-java-spring-boot-starter-webmvc</artifactId>
+            <version>1.0</version>
         </dependency>
 
         <dependency>
             <groupId>io.leangen.graphql</groupId>
             <artifactId>spqr</artifactId>
-            <version>0.9.6</version>
+            <version>0.10.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
