@@ -1,5 +1,6 @@
 package org.vtsukur.graphql.demo.cart.conf;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
@@ -15,8 +16,8 @@ public class RestClientsConfiguration {
     }
 
     @Bean
-    public ProductServiceRestClient productServiceRestClient() {
-        return new ProductServiceRestClient(restTemplate(), "http://localhost:9090");
+    public ProductServiceRestClient productServiceRestClient(@Value("${product.service.url}") String productServiceUrl) {
+        return new ProductServiceRestClient(restTemplate(), productServiceUrl);
     }
 
 }

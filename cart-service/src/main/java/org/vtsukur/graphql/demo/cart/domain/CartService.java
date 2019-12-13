@@ -19,11 +19,11 @@ public class CartService {
     }
 
     public Cart findCart(Long cartId) {
-        return cartRepository.findOne(cartId);
+        return cartRepository.findById(cartId).get();
     }
 
     public Cart addProductToCart(Long cartId, String productId, int quantity) {
-        Cart cart = cartRepository.findOne(cartId);
+        Cart cart = cartRepository.findById(cartId).get();
         Product product = productServiceRestClient.fetchProduct(productId);
         cart.addProduct(product.getId(), product.getPrice(), quantity);
         return cartRepository.save(cart);
